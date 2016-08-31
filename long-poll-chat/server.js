@@ -20,7 +20,8 @@ http.createServer(function(req, res) {
 
       req
         .on('readable', function() {
-          body += req.read();
+          var req_read = req.read();
+          if(req_read != null) body += req_read;
 
           if (body.length > 1e4) {
             res.statusCode = 413;
